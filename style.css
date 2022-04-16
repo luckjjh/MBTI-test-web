@@ -2,8 +2,17 @@
   font-family: "Jua", sans-serif;
 }
 article {
+  color: #fafcfb;
   display: flex;
   flex-direction: column;
+}
+
+body {
+  height: 100vh;
+  background-image: url(./img/bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .question {
@@ -19,6 +28,20 @@ article {
 }
 
 img {
-  width: 500px;
+  margin: 50px auto;
+  width: 300px;
   text-align: center;
+}
+
+#qTitle {
+  height: 150px;
+}
+
+button {
+  font-size: 30;
+  height: 70px;
+}
+
+.share {
+  margin: 0 auto;
 }
