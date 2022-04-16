@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>나와 가장 잘 맞는 학과는?</title>
+  </head>
+  <body class="container">
+    <article class="start">
+      <h1 class="mt-5 text-center">나와 가장 잘 맞는 학과는?</h1>
+      <button type="button" class="btn btn-success mt-5" onclick="start()">
+        테스트 시작하기
+      </button>
+    </article>
+
+    <article class="question">
+      <div class="progress mt-5">
+        <div
+          class="progress-bar progress-bar-striped bg-success"
+          role="progressbar"
+          style="width: calc(100 / 12 * 3%)"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
+      </div>
+      <h2 id="qTitle" class="text-center mt-5">문제</h2>
+      <input id="mbtiType" type="hidden" value="EI" />
+      <button id="A" type="button" class="btn btn-success mt-5" onclick="">
+        테스트
+      </button>
+      <button id="B" type="button" class="btn btn-success mt-5" onclick="">
+        테스트
+      </button>
+    </article>
+    <article class="showResult">
+      <button id="C" type="button" class="btn btn-success mt-5" onclick="">
+        결과 확인하기
+      </button>
+    </article>
+
+    <article class="result">
+      <img id="img" src="" alt="" class="" />
+      <a href="https://www.flaticon.com/kr/free-icons/-" title="- 아이콘"
+        >- 아이콘 제작자: Flat Icons - Flaticon</a
+      >
+      <h2 id="major" class="text-center mt-5">학과 이름</h2>
+      <h3 id="explain" class="text-center mt-5">설명</h3>
+    </article>
+    <input type="hidden" id="EI" value="0" />
+    <input type="hidden" id="SN" value="0" />
+    <input type="hidden" id="TF" value="0" />
+    <input type="hidden" id="JP" value="0" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let qNum = 1;
+      let ql = {
+        1: { title: "Q. 01", type: "EI", A: "E", B: "I" },
+        2: { title: "Q. 02", type: "EI", A: "E", B: "I" },
+        3: { title: "Q. 03", type: "EI", A: "E", B: "I" },
+        4: { title: "Q. 04", type: "SN", A: "S", B: "N" },
+        5: { title: "Q. 05", type: "SN", A: "S", B: "N" },
+        6: { title: "Q. 06", type: "SN", A: "S", B: "N" },
+        7: { title: "Q. 07", type: "TF", A: "T", B: "F" },
+        8: { title: "Q. 08", type: "TF", A: "T", B: "F" },
+        9: { title: "Q. 09", type: "TF", A: "T", B: "F" },
+        10: { title: "Q. 10", type: "JP", A: "J", B: "P" },
+        11: { title: "Q. 11", type: "JP", A: "J", B: "P" },
+        12: { title: "Q. 12", type: "JP", A: "J", B: "P" },
+      };
+      let result = {
+        ISTJ: {
+          major: "행정학과",
+          explain:
+            "사실에 근거하여 사고하는 정확한 성격을 갖고 계시네요. 집중력이 좋고 이해도가 좋아 행정학과에 가장 적합합니다.",
+          img: "./img/행정.png",
+        },
+        ISFJ: {
+          major: "유아교육과",
+          explain:
+            "신중함, 규칙적, 인내심이 특징으로 헌신적이고 세심한 성격을 갖고 계시네요. 소중한 이들을 잘 챙겨 유아교육과에 가장 적합합니다.",
+          img: "./img/유아교육.png",
+        },
+        INFJ: {
+          major: "심리학과",
+          explain:
+            "통찰력, 계획표를 작성하는 것을 좋아하는 것이 특징으로 타인의 감정에 민감하고, 세심하게 위로해주는 성격을 갖고 계시네요. 심리학과에 가장 적합합니다",
+          img: "./img/심리.png",
+        },
+        INTJ: {
+          major: "전자공학과",
+          explain:
+            "논리적 분석, 회로 설계, 기기 조립에 딱 맞는 성격을 갖고 계시네요. 전자공학과에 가장 적합합니다",
+          img: "./img/전자.png",
+        },
+        ISTP: {
+          major: "경찰행정학과",
+          explain:
+            "도구 사용에 능숙한 탐험형으로 내성적이지만 도와주는 걸 좋아하고 실용적이며, 도전적인 성격을 갖고 계시네요. 소방안전학과에 가장 적합합니다.",
+          img: "./img/경찰.png",
+        },
+        ISFP: {
+          major: "예체능계열",
+          explain:
+            "융통성 있는 성격의 매력 넘치는 예술가형으로 창의적인 아이디어를 다양한 방식으로 표출하는 성격을 갖고 계시네요. 모든 예체능계열 학과에 적합합니다.",
+          img: "./img/예체능.png",
+        },
+        INFP: {
+          major: "문예창작과",
+          explain:
+            "다른 유형과의 소통을 깊게 하고 이해하는 성격을 갖고 계시네요. 언어적으로 강하고 즐거움과 영감을 추구하는 문예창작과에 가장 적합합니다.",
+          img: "./img/문창.png",
+        },
+        INTP: {
+          major: "철학과",
+          explain:
+            "연구를 통한 삶을 좋아하고, 호기심이 많은 성격을 갖고 계시네요. 모든 일에 논리적으로 접근하기를 좋아하기 때문에 철학과에 가장 적합합니다",
+          img: "./img/철학.png",
+        },
+        ESTP: {
+          major: "경영학과",
+          explain:
+            "명석한 두뇌와 에너지 및 뛰어난 직관력이 있는 사업가형으로 문제 발생 시 직접 몸으로 부딪혀 해결하려는 성격을 갖고 계시네요. 경영학과에 가장 적합합니다.",
+          img: "./img/경영.png",
+        },
+        ESFP: {
+          major: "실용음악과",
+          explain:
+            "즉흥적이며 열정과 에너지가 넘치는 연예인형으로 스타성과 사교성, 따뜻한 성격을 갖과 계시네요 실용음악과에 가장 적합합니다.",
+          img: "./img/실용음악.png",
+        },
+        ENFP: {
+          major: "연극영화과",
+          explain:
+            "활발한 성격으로 사람들과 어울리는 것을 좋아하시네요. 안정된 삶보다 다양한 즐거움을 추구하기 때문에 연극영화과에 가장 적합합니다.",
+          img: "./img/연영.png",
+        },
+        ENTP: {
+          major: "법학과",
+          explain:
+            "약자의 입장에서 다수가 받아들인 사인에 의문을 제기함으로 희열을 느끼는 성격을 갖고 계시네요. 법학과에 가장 적합합니다.",
+          img: "./img/법학.png",
+        },
+        ENFJ: {
+          major: "정치외교학과",
+          explain:
+            "넘치는 카리스카로 청중을 압도하는 리더형으로 리더십이 높아 타인에게 관심이 많은 성격을 갖고 계시네요. 정치외교학과가 가장 적합합니다.",
+          img: "./img/정치.png",
+        },
+        ENTJ: {
+          major: "회계학과",
+          explain:
+            "대담하며, 성취를 통해서 행복을 느끼는 타고난 통솔자의 성격을 갖고 계시네요. 진취적이며 냉철한 판단력을 필요로하는 회계학과가 가장 적합합니다.",
+          img: "./img/회계.png",
+        },
+        ESTJ: {
+          major: "비서학과",
+          explain:
+            "관리하는데 뛰어난 실력을 갖춘 관리자형으로 엄격하고 명확한 성격을 갖고 계시네요. 많은 사람들을 통솔하고 관리하는 비서학과가 가장 적합합니다.",
+          img: "./img/비서.png",
+        },
+        ESFJ: {
+          major: "항공서비스과",
+          explain:
+            "타인을 향한 세심한 관심과 사교적인 성향을 갖고 계시네요. 다른 유형들보다 훨씬 유연한 인간관계를 형성하기 때문에 항공서비스과에 가장 적합합니다.",
+          img: "./img/항공서비스.png",
+        },
+      };
+      function start() {
+        $(".start").hide();
+        $(".question").show();
+        next();
+      }
+      $("#A").click(function () {
+        let mbtiType = $("#mbtiType").val();
+        let preValue = $("#" + mbtiType).val();
+        $("#" + mbtiType).val(parseInt(preValue) + 1);
+        next();
+      });
+
+      $("#B").click(function () {
+        next();
+      });
+
+      $("#C").click(function () {
+        $(".showResult").hide();
+        $(".result").show();
+      });
+      function next() {
+        if (qNum > 12) {
+          $(".question").hide();
+          $(".showResult").show();
+
+          let mbti = "";
+          $("#EI").val() < 2 ? (mbti += "I") : (mbti += "E");
+          $("#SN").val() < 2 ? (mbti += "N") : (mbti += "S");
+          $("#TF").val() < 2 ? (mbti += "F") : (mbti += "T");
+          $("#JP").val() < 2 ? (mbti += "P") : (mbti += "J");
+          $("#img").attr("src", result[mbti]["img"]);
+          $("#major").html(result[mbti]["major"]);
+          $("#explain").html(result[mbti]["explain"]);
+        } else {
+          $(".progress-bar").attr(
+            "style",
+            "width: calc(100 / 12 *" + qNum + "%)"
+          );
+          $("#qTitle").html(ql[qNum]["title"]);
+          $("#mbtiType").val(ql[qNum]["type"]);
+          $("#A").html(ql[qNum]["A"]);
+          $("#B").html(ql[qNum]["B"]);
+          qNum++;
+        }
+      }
+    </script>
+  </body>
+</html>

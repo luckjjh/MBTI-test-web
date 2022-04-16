@@ -1,0 +1,24 @@
+* {
+  font-family: "Jua", sans-serif;
+}
+article {
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  display: none;
+}
+
+.result {
+  display: none;
+}
+
+.showResult {
+  display: none;
+}
+
+img {
+  width: 500px;
+  text-align: center;
+}
