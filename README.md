@@ -7,4 +7,4 @@ mbti 나랑 가장 잘 맞는 학과
 * JavaScript
 * jquery
 
-## [링크](https://luckjjh.github.io/MBTI-test-web/)
+## [나랑 가장 잘 맞는 학과는?](https://luckjjh.github.io/MBTI-test-web/)
